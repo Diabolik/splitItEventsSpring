@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true"> 
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+	<property name="LOG_FILE"
+		value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}receive-articulation-service.log}" />
+
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		
+			<layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+				<jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+					<!-- prettyPrint is probably ok in dev, but usually not ideal in production: -->
+					<prettyPrint>true</prettyPrint>					
+                    <appendLineSeparator>true</appendLineSeparator>
+				</jsonFormatter>
+				<timestampFormat>yyyy-MM-dd HH:mm:ss</timestampFormat>                
+			</layout>
+		
+		<file>${LOG_FILE}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>${LOG_FILE}.%i</fileNamePattern>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>10MB</MaxFileSize>
+		</triggeringPolicy>
+	</appender>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">		
+			<layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+				<jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+					<!-- prettyPrint is probably ok in dev, but usually not ideal in production: -->
+					<prettyPrint>true</prettyPrint>
+                    <appendLineSeparator>true</appendLineSeparator>
+				</jsonFormatter>
+				<timestampFormat>yyyy-MM-dd HH:mm:ss</timestampFormat>
+			</layout>
+		
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+
+</configuration>
