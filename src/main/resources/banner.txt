@@ -1,6 +1,6 @@
  
  *******************************************************************************
-    Copyright 2015 Mercury Solutions and its affiliates.
+    Copyright 2015 Mercury Solutions.
  *******************************************************************************
 
 App version: ${application.version}  

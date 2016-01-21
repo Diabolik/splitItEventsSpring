@@ -1,6 +1,6 @@
 /*
  * *******************************************************************************
- *   Copyright 2015 Mercury Solutions and its affiliates.
+ *   Copyright 2015 Mercury Solutions.
  * *******************************************************************************
  */
 package com.splitit.events;
@@ -34,7 +34,7 @@ import com.mangofactory.swagger.plugin.EnableSwagger;
 @EnableTransactionManagement
 @Import({ RepositoryRestMvcConfiguration.class })
 @ComponentScan
-//@EnableSwagger
+@EnableSwagger
 public class Application {
 
 	private final static Log log = LogFactory.getLog(Application.class);
