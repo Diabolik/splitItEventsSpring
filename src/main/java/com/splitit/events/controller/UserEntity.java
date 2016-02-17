@@ -3,58 +3,35 @@
  *   Copyright 2015 Mercury Solutions.
  * *******************************************************************************
  */
-package com.splitit.events.domain;
+package com.splitit.events.controller;
 
 import java.sql.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-@SuppressWarnings("serial")
-@Entity
-public class User extends BaseObject{
-	@Id
-	@GeneratedValue
+public class UserEntity {
 	private Long id;
-	
-	@Column(nullable = false)
+
 	private String name;
-	
-	@Column(nullable = false)
+
 	private String lastName;
-	
-	@Column(nullable = false)
+
 	private String nickname;
-	
-	@Column(nullable = false)
+
 	private String email;
-	
-	@Column(nullable = false)
+
 	private String phone;
-	
-	@Column(nullable = false)
+
 	private String gender;
-	
-	@Column(nullable = true)
+
 	private String password;
-	
-	@Column(nullable = true)
+
 	private Date birthday;
-	
-	@Column(nullable = true)
+
 	private Long fbId;
-	
-	@Column(nullable = true)
+
 	private String image;
-	
-	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "user")
-	private Set<Address> addreses;
+
+	private Set<AddressEntity> addreses;
 
 	/**
 	 * @return the id
@@ -64,7 +41,8 @@ public class User extends BaseObject{
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -78,7 +56,8 @@ public class User extends BaseObject{
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -92,7 +71,8 @@ public class User extends BaseObject{
 	}
 
 	/**
-	 * @param lastName the lastName to set
+	 * @param lastName
+	 *            the lastName to set
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
@@ -106,7 +86,8 @@ public class User extends BaseObject{
 	}
 
 	/**
-	 * @param nickname the nickname to set
+	 * @param nickname
+	 *            the nickname to set
 	 */
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
@@ -120,7 +101,8 @@ public class User extends BaseObject{
 	}
 
 	/**
-	 * @param email the email to set
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -134,7 +116,8 @@ public class User extends BaseObject{
 	}
 
 	/**
-	 * @param phone the phone to set
+	 * @param phone
+	 *            the phone to set
 	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
@@ -148,7 +131,8 @@ public class User extends BaseObject{
 	}
 
 	/**
-	 * @param gender the gender to set
+	 * @param gender
+	 *            the gender to set
 	 */
 	public void setGender(String gender) {
 		this.gender = gender;
@@ -162,7 +146,8 @@ public class User extends BaseObject{
 	}
 
 	/**
-	 * @param password the password to set
+	 * @param password
+	 *            the password to set
 	 */
 	public void setPassword(String password) {
 		this.password = password;
@@ -176,7 +161,8 @@ public class User extends BaseObject{
 	}
 
 	/**
-	 * @param birthday the birthday to set
+	 * @param birthday
+	 *            the birthday to set
 	 */
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
@@ -190,7 +176,8 @@ public class User extends BaseObject{
 	}
 
 	/**
-	 * @param fbId the fbId to set
+	 * @param fbId
+	 *            the fbId to set
 	 */
 	public void setFbId(Long fbId) {
 		this.fbId = fbId;
@@ -204,7 +191,8 @@ public class User extends BaseObject{
 	}
 
 	/**
-	 * @param image the image to set
+	 * @param image
+	 *            the image to set
 	 */
 	public void setImage(String image) {
 		this.image = image;
@@ -213,14 +201,15 @@ public class User extends BaseObject{
 	/**
 	 * @return the addreses
 	 */
-	public Set<Address> getAddreses() {
+	public Set<AddressEntity> getAddreses() {
 		return addreses;
 	}
 
 	/**
-	 * @param addreses the addreses to set
+	 * @param addreses
+	 *            the addreses to set
 	 */
-	public void setAddreses(Set<Address> addreses) {
+	public void setAddreses(Set<AddressEntity> addreses) {
 		this.addreses = addreses;
-	}	
+	}
 }

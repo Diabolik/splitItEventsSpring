@@ -3,53 +3,32 @@
  *   Copyright 2015 Mercury Solutions.
  * *******************************************************************************
  */
-package com.splitit.events.domain;
+package com.splitit.events.controller;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-@SuppressWarnings("serial")
-@Entity
-public class Address extends BaseObject{
-	@Id
-	@GeneratedValue
+public class AddressEntity {
 	private Long id;
-	
-	@Column(nullable = false)
+
 	private String street;
-	
-	@Column(nullable = false)
+
 	private String suburb;
-	
-	@Column(nullable = false)
+
 	private String extNumber;
-	
-	@Column(nullable = false)
+
 	private String zipCode;
-	
-	@Column(nullable = false)
+
 	private String city;
-	
-	@Column(nullable = false)
+
 	private String state;
-	
-	@Column(nullable = true)
+
 	private String intNumber;
-	
-	@Column(nullable = true)
+
 	private String reference;
-	
-	@Column(nullable = true)
+
 	private Float geoLat;
-	
-	@Column(nullable = true)
+
 	private Float geoLon;
-	
-	@ManyToOne
-	private User user;
+
+	private UserEntity user;
 
 	/**
 	 * @return the id
@@ -59,7 +38,8 @@ public class Address extends BaseObject{
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -73,7 +53,8 @@ public class Address extends BaseObject{
 	}
 
 	/**
-	 * @param street the street to set
+	 * @param street
+	 *            the street to set
 	 */
 	public void setStreet(String street) {
 		this.street = street;
@@ -87,7 +68,8 @@ public class Address extends BaseObject{
 	}
 
 	/**
-	 * @param suburb the suburb to set
+	 * @param suburb
+	 *            the suburb to set
 	 */
 	public void setSuburb(String suburb) {
 		this.suburb = suburb;
@@ -101,7 +83,8 @@ public class Address extends BaseObject{
 	}
 
 	/**
-	 * @param extNumber the extNumber to set
+	 * @param extNumber
+	 *            the extNumber to set
 	 */
 	public void setExtNumber(String extNumber) {
 		this.extNumber = extNumber;
@@ -115,7 +98,8 @@ public class Address extends BaseObject{
 	}
 
 	/**
-	 * @param zipCode the zipCode to set
+	 * @param zipCode
+	 *            the zipCode to set
 	 */
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
@@ -129,7 +113,8 @@ public class Address extends BaseObject{
 	}
 
 	/**
-	 * @param city the city to set
+	 * @param city
+	 *            the city to set
 	 */
 	public void setCity(String city) {
 		this.city = city;
@@ -143,7 +128,8 @@ public class Address extends BaseObject{
 	}
 
 	/**
-	 * @param state the state to set
+	 * @param state
+	 *            the state to set
 	 */
 	public void setState(String state) {
 		this.state = state;
@@ -157,7 +143,8 @@ public class Address extends BaseObject{
 	}
 
 	/**
-	 * @param intNumber the intNumber to set
+	 * @param intNumber
+	 *            the intNumber to set
 	 */
 	public void setIntNumber(String intNumber) {
 		this.intNumber = intNumber;
@@ -171,7 +158,8 @@ public class Address extends BaseObject{
 	}
 
 	/**
-	 * @param reference the reference to set
+	 * @param reference
+	 *            the reference to set
 	 */
 	public void setReference(String reference) {
 		this.reference = reference;
@@ -180,14 +168,15 @@ public class Address extends BaseObject{
 	/**
 	 * @return the user
 	 */
-	public User getUser() {
+	public UserEntity getUser() {
 		return user;
 	}
 
 	/**
-	 * @param user the user to set
+	 * @param user
+	 *            the user to set
 	 */
-	public void setUser(User user) {
+	public void setUser(UserEntity user) {
 		this.user = user;
 	}
 
@@ -199,7 +188,8 @@ public class Address extends BaseObject{
 	}
 
 	/**
-	 * @param geoLat the geoLat to set
+	 * @param geoLat
+	 *            the geoLat to set
 	 */
 	public void setGeoLat(Float geoLat) {
 		this.geoLat = geoLat;
@@ -213,7 +203,8 @@ public class Address extends BaseObject{
 	}
 
 	/**
-	 * @param geoLon the geoLon to set
+	 * @param geoLon
+	 *            the geoLon to set
 	 */
 	public void setGeoLon(Float geoLon) {
 		this.geoLon = geoLon;

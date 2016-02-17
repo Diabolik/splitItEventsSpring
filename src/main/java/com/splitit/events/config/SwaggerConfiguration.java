@@ -48,7 +48,7 @@ public class SwaggerConfiguration {
 	public SwaggerSpringMvcPlugin customImplementation() {
 		return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
 				.apiInfo(apiInfo())
-				.includePatterns("^(?!.*health)(?!.*repository)(?!.*alps).*$");
+				.includePatterns("/api.*");
 	}
 
 	private ApiInfo apiInfo() {
