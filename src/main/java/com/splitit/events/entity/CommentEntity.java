@@ -3,41 +3,16 @@
  *   Copyright 2015 Mercury Solutions.
  * *******************************************************************************
  */
-package com.splitit.events.domain;
+package com.splitit.events.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.splitit.events.entity.CommentEntity;
-import com.splitit.events.interfaces.IModel;
-
-@SuppressWarnings("serial")
-@Entity
-public class Comment extends BaseObject  implements IModel {
-	@Id
-	@GeneratedValue
+public class CommentEntity {
 	private Long id;
 
-	@Column(nullable = false)
 	private String comment;
 
-	@OneToOne
-	private User owner;
+	private UserEntity owner;
 
-	@ManyToOne
-	private Event event;
-	
-	@Override
-	public Object toEntity() {
-		ObjectMapper mapper = new ObjectMapper();
-		CommentEntity entity = mapper.convertValue(this, CommentEntity.class);
-		return entity;
-	}
+	private EventEntity event;
 
 	/**
 	 * @return the id
@@ -72,7 +47,7 @@ public class Comment extends BaseObject  implements IModel {
 	/**
 	 * @return the owner
 	 */
-	public User getOwner() {
+	public UserEntity getOwner() {
 		return owner;
 	}
 
@@ -80,14 +55,14 @@ public class Comment extends BaseObject  implements IModel {
 	 * @param owner
 	 *            the owner to set
 	 */
-	public void setOwner(User owner) {
+	public void setOwner(UserEntity owner) {
 		this.owner = owner;
 	}
 
 	/**
 	 * @return the event
 	 */
-	public Event getEvent() {
+	public EventEntity getEvent() {
 		return event;
 	}
 
@@ -95,7 +70,7 @@ public class Comment extends BaseObject  implements IModel {
 	 * @param event
 	 *            the event to set
 	 */
-	public void setEvent(Event event) {
+	public void setEvent(EventEntity event) {
 		this.event = event;
 	}
 }

@@ -3,69 +3,33 @@
  *   Copyright 2015 Mercury Solutions.
  * *******************************************************************************
  */
-package com.splitit.events.domain;
+package com.splitit.events.entity;
 
 import java.sql.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.splitit.events.entity.EventEntity;
-import com.splitit.events.interfaces.IModel;
-
-@SuppressWarnings("serial")
-@Entity
-public class Event extends BaseObject implements IModel {
-	@Id
-	@GeneratedValue
+public class EventEntity {
 	private Long id;
 	
-	@Column(nullable = false)
 	private String name;
 	
-	@Column(nullable = true)
 	private String description;
 	
-	@Column(nullable = false)
 	private String place;
 	
-	@Column(nullable = false)
 	private boolean visibility;
 	
-	@OneToOne
-	private Theme theme;
+	private ThemeEntity theme;
 	
-	@OneToOne
-	@JsonIgnore
-	private User owner;
+	private UserEntity owner;
 	
-	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "event")
-	private Set<Comment> comments;
+	private Set<CommentEntity> comments;
 	
-	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "event")
-	private Set<GalleryItem> gallery;
+	private Set<GalleryItemEntity> gallery;
 	
-	@Column(nullable = true)
 	private Date startDate;
 	
-	@Column(nullable = true)
 	private Date endDate;
-	
-	@Override
-	public Object toEntity() {
-		ObjectMapper mapper = new ObjectMapper();
-		EventEntity entity = mapper.convertValue(this, EventEntity.class);
-		return entity;
-	}
 
 	/**
 	 * @return the id
@@ -140,56 +104,56 @@ public class Event extends BaseObject implements IModel {
 	/**
 	 * @return the theme
 	 */
-	public Theme getTheme() {
+	public ThemeEntity getTheme() {
 		return theme;
 	}
 
 	/**
 	 * @param theme the theme to set
 	 */
-	public void setTheme(Theme theme) {
+	public void setTheme(ThemeEntity theme) {
 		this.theme = theme;
 	}
 
 	/**
 	 * @return the owner
 	 */
-	public User getOwner() {
+	public UserEntity getOwner() {
 		return owner;
 	}
 
 	/**
 	 * @param owner the owner to set
 	 */
-	public void setOwner(User owner) {
+	public void setOwner(UserEntity owner) {
 		this.owner = owner;
 	}
 
 	/**
 	 * @return the comments
 	 */
-	public Set<Comment> getComments() {
+	public Set<CommentEntity> getComments() {
 		return comments;
 	}
 
 	/**
 	 * @param comments the comments to set
 	 */
-	public void setComments(Set<Comment> comments) {
+	public void setComments(Set<CommentEntity> comments) {
 		this.comments = comments;
 	}
 
 	/**
 	 * @return the gallery
 	 */
-	public Set<GalleryItem> getGallery() {
+	public Set<GalleryItemEntity> getGallery() {
 		return gallery;
 	}
 
 	/**
 	 * @param gallery the gallery to set
 	 */
-	public void setGallery(Set<GalleryItem> gallery) {
+	public void setGallery(Set<GalleryItemEntity> gallery) {
 		this.gallery = gallery;
 	}
 

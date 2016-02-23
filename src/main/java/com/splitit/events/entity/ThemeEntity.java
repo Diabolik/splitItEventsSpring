@@ -3,60 +3,30 @@
  *   Copyright 2015 Mercury Solutions.
  * *******************************************************************************
  */
-package com.splitit.events.domain;
+package com.splitit.events.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.splitit.events.entity.ThemeEntity;
-import com.splitit.events.interfaces.IModel;
-
-@SuppressWarnings("serial")
-@Entity
-public class Theme extends BaseObject implements IModel {
-	@Id
-	@GeneratedValue
+public class ThemeEntity {
 	private Long id;
-	
-	@Column(nullable = false)
+
 	private String name;
-	
-	@Column(nullable = false)
+
 	private String description;
-	
-	@Column(nullable = false)
+
 	private String urlCover;
-	
-	@Column(nullable = false)
+
 	private String urlBackground;
-	
-	@Column(nullable = false)
+
 	private String colorName;
-	
-	@Column(nullable = false)
+
 	private String colorDescription;
-	
-	@Column(nullable = false)
+
 	private String colorLink;
-	
-	@Column(nullable = false)
+
 	private String colorGuests;
-	
-	@Column(nullable = false)
-	private String  colorSection1;
-	
-	@Column(nullable = false)
+
+	private String colorSection1;
+
 	private String colorSection2;
-	
-	@Override
-	public Object toEntity() {
-		ObjectMapper mapper = new ObjectMapper();
-		ThemeEntity entity = mapper.convertValue(this, ThemeEntity.class);
-		return entity;
-	}
 
 	/**
 	 * @return the id
@@ -66,7 +36,8 @@ public class Theme extends BaseObject implements IModel {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -80,7 +51,8 @@ public class Theme extends BaseObject implements IModel {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -94,7 +66,8 @@ public class Theme extends BaseObject implements IModel {
 	}
 
 	/**
-	 * @param description the description to set
+	 * @param description
+	 *            the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -108,7 +81,8 @@ public class Theme extends BaseObject implements IModel {
 	}
 
 	/**
-	 * @param urlCover the urlCover to set
+	 * @param urlCover
+	 *            the urlCover to set
 	 */
 	public void setUrlCover(String urlCover) {
 		this.urlCover = urlCover;
@@ -122,7 +96,8 @@ public class Theme extends BaseObject implements IModel {
 	}
 
 	/**
-	 * @param urlBackground the urlBackground to set
+	 * @param urlBackground
+	 *            the urlBackground to set
 	 */
 	public void setUrlBackground(String urlBackground) {
 		this.urlBackground = urlBackground;
@@ -136,7 +111,8 @@ public class Theme extends BaseObject implements IModel {
 	}
 
 	/**
-	 * @param colorName the colorName to set
+	 * @param colorName
+	 *            the colorName to set
 	 */
 	public void setColorName(String colorName) {
 		this.colorName = colorName;
@@ -150,7 +126,8 @@ public class Theme extends BaseObject implements IModel {
 	}
 
 	/**
-	 * @param colorDescription the colorDescription to set
+	 * @param colorDescription
+	 *            the colorDescription to set
 	 */
 	public void setColorDescription(String colorDescription) {
 		this.colorDescription = colorDescription;
@@ -164,7 +141,8 @@ public class Theme extends BaseObject implements IModel {
 	}
 
 	/**
-	 * @param colorLink the colorLink to set
+	 * @param colorLink
+	 *            the colorLink to set
 	 */
 	public void setColorLink(String colorLink) {
 		this.colorLink = colorLink;
@@ -178,7 +156,8 @@ public class Theme extends BaseObject implements IModel {
 	}
 
 	/**
-	 * @param colorGuests the colorGuests to set
+	 * @param colorGuests
+	 *            the colorGuests to set
 	 */
 	public void setColorGuests(String colorGuests) {
 		this.colorGuests = colorGuests;
@@ -192,7 +171,8 @@ public class Theme extends BaseObject implements IModel {
 	}
 
 	/**
-	 * @param colorSection1 the colorSection1 to set
+	 * @param colorSection1
+	 *            the colorSection1 to set
 	 */
 	public void setColorSection1(String colorSection1) {
 		this.colorSection1 = colorSection1;
@@ -206,7 +186,8 @@ public class Theme extends BaseObject implements IModel {
 	}
 
 	/**
-	 * @param colorSection2 the colorSection2 to set
+	 * @param colorSection2
+	 *            the colorSection2 to set
 	 */
 	public void setColorSection2(String colorSection2) {
 		this.colorSection2 = colorSection2;

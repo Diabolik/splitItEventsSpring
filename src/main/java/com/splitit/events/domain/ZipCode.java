@@ -16,7 +16,6 @@ import com.splitit.events.interfaces.IModel;
 @SuppressWarnings("serial")
 @Entity
 public class ZipCode extends BaseObject implements IModel {
-	// Variables
 	@Id
 	private int id;
 
@@ -26,7 +25,6 @@ public class ZipCode extends BaseObject implements IModel {
 	@Column(nullable = false)
 	private String state;
 
-	// Methods
 	@Override
 	public Object toEntity() {
 		ObjectMapper mapper = new ObjectMapper();
@@ -34,7 +32,6 @@ public class ZipCode extends BaseObject implements IModel {
 		return entity;
 	}
 
-	// Properties
 	/**
 	 * @return the id
 	 */

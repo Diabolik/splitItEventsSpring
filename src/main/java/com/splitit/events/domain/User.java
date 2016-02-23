@@ -16,9 +16,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.splitit.events.entity.UserEntity;
+import com.splitit.events.interfaces.IModel;
+
 @SuppressWarnings("serial")
 @Entity
-public class User extends BaseObject{
+public class User extends BaseObject implements IModel {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -56,6 +60,13 @@ public class User extends BaseObject{
 	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<Address> addreses;
 
+	@Override
+	public Object toEntity() {
+		ObjectMapper mapper = new ObjectMapper();
+		UserEntity entity = mapper.convertValue(this, UserEntity.class);
+		return entity;
+	}
+	
 	/**
 	 * @return the id
 	 */

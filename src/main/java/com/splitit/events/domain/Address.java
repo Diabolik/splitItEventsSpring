@@ -11,9 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.splitit.events.entity.AddressEntity;
+import com.splitit.events.interfaces.IModel;
+
 @SuppressWarnings("serial")
 @Entity
-public class Address extends BaseObject{
+public class Address extends BaseObject implements IModel {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -50,6 +54,13 @@ public class Address extends BaseObject{
 	
 	@ManyToOne
 	private User user;
+	
+	@Override
+	public Object toEntity() {
+		ObjectMapper mapper = new ObjectMapper();
+		AddressEntity entity = mapper.convertValue(this, AddressEntity.class);
+		return entity;
+	}
 
 	/**
 	 * @return the id

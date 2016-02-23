@@ -3,7 +3,7 @@
  *   Copyright 2015 Mercury Solutions.
  * *******************************************************************************
  */
-package com.splitit.events.controller;
+package com.splitit.events.entity;
 
 import java.sql.Date;
 import java.util.Set;

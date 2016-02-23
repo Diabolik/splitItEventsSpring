@@ -3,7 +3,7 @@
  *   Copyright 2015 Mercury Solutions.
  * *******************************************************************************
  */
-package com.splitit.events.controller;
+package com.splitit.events.entity;
 
 public class AddressEntity {
 	private Long id;
