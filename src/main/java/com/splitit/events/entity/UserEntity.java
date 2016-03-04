@@ -8,7 +8,13 @@ package com.splitit.events.entity;
 import java.sql.Date;
 import java.util.Set;
 
-public class UserEntity {
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.splitit.events.domain.User;
+import com.splitit.events.interfaces.IEntity;
+
+public class UserEntity implements IEntity {
 	private Long id;
 
 	private String name;
@@ -25,13 +31,22 @@ public class UserEntity {
 
 	private String password;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date birthday;
 
 	private Long fbId;
 
 	private String image;
 
+	@JsonIgnore
 	private Set<AddressEntity> addreses;
+	
+	@Override
+	public Object toModel() {
+		ObjectMapper mapper = new ObjectMapper();
+		User address = mapper.convertValue(this, User.class);
+		return address;
+	}
 
 	/**
 	 * @return the id

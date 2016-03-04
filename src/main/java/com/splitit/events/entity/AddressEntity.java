@@ -5,7 +5,11 @@
  */
 package com.splitit.events.entity;
 
-public class AddressEntity {
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.splitit.events.domain.Address;
+import com.splitit.events.interfaces.IEntity;
+
+public class AddressEntity implements IEntity {
 	private Long id;
 
 	private String street;
@@ -29,6 +33,13 @@ public class AddressEntity {
 	private Float geoLon;
 
 	private UserEntity user;
+	
+	@Override
+	public Object toModel() {
+		ObjectMapper mapper = new ObjectMapper();
+		Address address = mapper.convertValue(this, Address.class);
+		return address;
+	}
 
 	/**
 	 * @return the id

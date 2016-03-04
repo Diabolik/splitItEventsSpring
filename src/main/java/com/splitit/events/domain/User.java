@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.splitit.events.entity.UserEntity;
 import com.splitit.events.interfaces.IModel;
@@ -63,6 +64,7 @@ public class User extends BaseObject implements IModel {
 	@Override
 	public Object toEntity() {
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		UserEntity entity = mapper.convertValue(this, UserEntity.class);
 		return entity;
 	}
