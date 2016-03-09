@@ -5,7 +5,11 @@
  */
 package com.splitit.events.entity;
 
-public class ThemeEntity {
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.splitit.events.domain.Theme;
+import com.splitit.events.interfaces.IEntity;
+
+public class ThemeEntity implements IEntity {
 	private Long id;
 
 	private String name;
@@ -27,6 +31,13 @@ public class ThemeEntity {
 	private String colorSection1;
 
 	private String colorSection2;
+	
+	@Override
+	public Object toModel() {
+		ObjectMapper mapper = new ObjectMapper();
+		Theme theme = mapper.convertValue(this, Theme.class);
+		return theme;
+	}
 
 	/**
 	 * @return the id

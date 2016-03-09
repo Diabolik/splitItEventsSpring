@@ -31,7 +31,7 @@ public class ZipCodeController {
 	@Autowired
 	private ZipCodeService zipCodeService;
 
-	@RequestMapping(value = "/zipcode/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/zipcodes/{id}", method = RequestMethod.GET)
 	@ApiOperation(value = "Search the city and the state by the zipcode", notes = "Search the city and the state by the zipcode")
 	public ResponseEntity<ZipCodeEntity> findById(@PathVariable("id") int id) {
 		EventsErrorCode managedError = EventsErrorCode.ZIPCODE_NOT_FOUND;

@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.splitit.events.entity.ThemeEntity;
 import com.splitit.events.interfaces.IModel;
@@ -54,6 +55,7 @@ public class Theme extends BaseObject implements IModel {
 	@Override
 	public Object toEntity() {
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		ThemeEntity entity = mapper.convertValue(this, ThemeEntity.class);
 		return entity;
 	}

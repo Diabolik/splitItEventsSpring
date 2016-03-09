@@ -9,7 +9,7 @@ public enum EventsErrorCode {
 	//Users
 	USER_NOT_FOUND(001, "USER_NOT_FOUND", "The user is not found in the database."),
 	USER_FOUND_EMAIL(002, "USER_FOUND_EMAIL", "This email is already used. Please Verify"),
-	USER_FOUND_NICKNAME(002, "USER_FOUND_EMAIL", "This nickname is already used. Please Verify"),
+	USER_FOUND_NICKNAME(003, "USER_FOUND_NICKNAME", "This nickname is already used. Please Verify"),
 
 	//ZipCode
 	ZIPCODE_NOT_FOUND(031, "ZIPCODE_NOT_FOUND", "The zip code is not found in the database. Using ID: "),

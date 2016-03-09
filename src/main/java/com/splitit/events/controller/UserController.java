@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.splitit.events.domain.User;
@@ -25,7 +26,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api")
-@Api(description = "Insert a new user", value = "")
+@Api(description = "User Model API", value = "")
 public class UserController {
 
 	private final static Log log = LogFactory.getLog(UserController.class);
@@ -33,46 +34,61 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-//	@RequestMapping(value = "/user", method = RequestMethod.POST)
-//	@ApiOperation(value = "Search the city and the state by the zipcode", notes = "Search the city and the state by the zipcode")
-//	public ResponseEntity<ZipCodeEntity> findById(@PathVariable("id") int id) {
-//		EventsErrorCode managedError = EventsErrorCode.ZIPCODE_NOT_FOUND;
-//		ResponseEntity<ZipCodeEntity> response = null;
-//
-//		if (!userService.exists(id)) {
-//			log.error(managedError.getDescription() + id);
-//			response = new ResponseEntity<ZipCodeEntity>(HttpStatus.NOT_FOUND);
-//			return response;
-//		}
-//
-//		ZipCodeEntity entity = (ZipCodeEntity) userService.findById(id).toEntity();
-//		response = new ResponseEntity<ZipCodeEntity>(entity, HttpStatus.OK);
-//		return response;
-//	}
-	
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	@ApiOperation(value = "Save the user provided", notes = "Save the user provided")
-	public ResponseEntity<UserEntity> save(@RequestBody UserEntity userEntity) {
+	@RequestMapping(value = "/users/email", method = RequestMethod.POST)
+	@ApiOperation(value = "Search the user by email", notes = "Search the user by email")
+	public ResponseEntity<UserEntity> findByEmail(@RequestParam("email") String email) {
 		ResponseEntity<UserEntity> response = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		
-		validateEmailExists(userEntity.getEmail(), responseHeaders);
-		if (!responseHeaders.isEmpty()) {
-			return new ResponseEntity<UserEntity>(null, responseHeaders, HttpStatus.NOT_FOUND);
-		}
-		
-		validateNicknameExists(userEntity.getNickname(), responseHeaders);
+		User user = validateEmailNotExists(email, responseHeaders);
 		if (!responseHeaders.isEmpty()) {
 			return new ResponseEntity<UserEntity>(null, responseHeaders, HttpStatus.NOT_FOUND);
 		}
 
-		User user = (User) userEntity.toModel();
-		userEntity = (UserEntity) userService.save(user).toEntity();
-
-		response = new ResponseEntity<UserEntity>(userEntity, HttpStatus.OK);
+		UserEntity entity = (UserEntity) user.toEntity();
+		response = new ResponseEntity<UserEntity>(entity, HttpStatus.OK);
 		return response;
 	}
 	
+	@RequestMapping(value = "/users/nickname", method = RequestMethod.POST)
+	@ApiOperation(value = "Search the user by email", notes = "Search the user by email")
+	public ResponseEntity<UserEntity> findByNickname(@RequestParam("nickname") String nickname) {
+		ResponseEntity<UserEntity> response = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		
+		User user = validateNicknameNotExists(nickname, responseHeaders);
+		if (!responseHeaders.isEmpty()) {
+			return new ResponseEntity<UserEntity>(null, responseHeaders, HttpStatus.NOT_FOUND);
+		}
+
+		UserEntity entity = (UserEntity) user.toEntity();
+		response = new ResponseEntity<UserEntity>(entity, HttpStatus.OK);
+		return response;
+	}
+
+	@RequestMapping(value = "/users", method = RequestMethod.POST)
+	@ApiOperation(value = "Save the user provided", notes = "Save the user provided")
+	public ResponseEntity<UserEntity> save(@RequestBody UserEntity entity) {
+		ResponseEntity<UserEntity> response = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+
+		validateEmailExists(entity.getEmail(), responseHeaders);
+		if (!responseHeaders.isEmpty()) {
+			return new ResponseEntity<UserEntity>(null, responseHeaders, HttpStatus.NOT_FOUND);
+		}
+
+		validateNicknameExists(entity.getNickname(), responseHeaders);
+		if (!responseHeaders.isEmpty()) {
+			return new ResponseEntity<UserEntity>(null, responseHeaders, HttpStatus.NOT_FOUND);
+		}
+
+		User user = (User) entity.toModel();
+		entity = (UserEntity) userService.save(user).toEntity();
+
+		response = new ResponseEntity<UserEntity>(entity, HttpStatus.OK);
+		return response;
+	}
+
 	/**
 	 * Verify if the email is used
 	 * 
@@ -86,7 +102,7 @@ public class UserController {
 			headers.add("USER_FOUND_EMAIL", managedError.toString());
 		}
 	}
-	
+
 	/**
 	 * Verify if the nickname is used
 	 * 
@@ -100,4 +116,39 @@ public class UserController {
 			headers.add("USER_FOUND_EMAIL", managedError.toString());
 		}
 	}
+
+	/**
+	 * Verify if the email is used
+	 * 
+	 * @param email
+	 * @param headers
+	 */
+	private User validateEmailNotExists(String email, HttpHeaders headers) {
+		User user = userService.findByEmail(email);
+
+		if (user == null) {
+			EventsErrorCode managedError = EventsErrorCode.USER_NOT_FOUND;
+			log.error(managedError);
+			headers.add("USER_NOT_FOUND", managedError.toString());
+		}
+		return user;
+	}
+
+	/**
+	 * Verify if the nickname is used
+	 * 
+	 * @param nickname
+	 * @param headers
+	 */
+	private User validateNicknameNotExists(String nickname, HttpHeaders headers) {
+		User user = userService.findByNickname(nickname);
+
+		if (user == null) {
+			EventsErrorCode managedError = EventsErrorCode.USER_NOT_FOUND;
+			log.error(managedError);
+			headers.add("USER_NOT_FOUND", managedError.toString());
+		}
+		return user;
+	}
+
 }
